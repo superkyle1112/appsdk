@@ -28,9 +28,12 @@ class Settings:
         else:
             load_dotenv()
 
-        host = os.getenv("APP_HOST", "127.0.0.1")
-        port = int(os.getenv("APP_PORT", "8000"))
-        public_url = os.getenv("APP_PUBLIC_URL", f"http://{host}:{port}")
+        host = os.getenv("APP_HOST") or "127.0.0.1"
+
+        raw_port = os.getenv("APP_PORT")
+        port = int(raw_port) if raw_port not in (None, "") else 8000
+
+        public_url = os.getenv("APP_PUBLIC_URL") or f"http://{host}:{port}"
 
         return cls(host=host, port=port, public_url=public_url)
 
