@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: appenv
     env:
       APP_HOST: ${{ secrets.APP_HOST }}
       APP_PORT: ${{ secrets.APP_PORT }}
